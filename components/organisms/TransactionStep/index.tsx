@@ -1,4 +1,4 @@
-import TransactionStepItem from '../../molecules/TransactionStepItem';
+import StepItem from '../../molecules/StepItem';
 
 export default function TransactionStep() {
   return (
@@ -11,9 +11,9 @@ export default function TransactionStep() {
           Easy to Win the Game
         </h2>
         <div className="row gap-lg-0 gap-4" data-aos="fade-up">
-          <TransactionStepItem icon="trans-step-1" title="1. Start" desc1="Pilih salah satu game" desc2="yang ingin kamu top up" />
-          <TransactionStepItem icon="trans-step-2" title="2. Fill Up" desc1="Top up sesuai dengan" desc2="nominal yang sudah tersedia" />
-          <TransactionStepItem icon="trans-step-3" title="3. Be a Winner" desc1="Siap digunakan untuk" desc2="improve permainan kamu" />
+          <StepItem icon="trans-step-1" title="1. Start" desc1="Pilih salah satu game" desc2="yang ingin kamu top up" />
+          <StepItem icon="trans-step-2" title="2. Fill Up" desc1="Top up sesuai dengan" desc2="nominal yang sudah tersedia" />
+          <StepItem icon="trans-step-3" title="3. Be a Winner" desc1="Siap digunakan untuk" desc2="improve permainan kamu" />
         </div>
       </div>
     </section>

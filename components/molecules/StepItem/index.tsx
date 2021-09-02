@@ -1,10 +1,10 @@
-interface TransactionStepItemProps {
+interface StepItemProps {
     icon: 'trans-step-1' | 'trans-step-2' | 'trans-step-3';
     title: string;
     desc1: string;
     desc2: string;
 }
-export default function TransactionStepItem(props: TransactionStepItemProps) {
+export default function StepItem(props: StepItemProps) {
   const {
     icon, title, desc1, desc2,
   } = props;
