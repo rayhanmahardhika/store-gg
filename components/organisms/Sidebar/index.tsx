@@ -2,19 +2,23 @@ import Footer from './Footer';
 import Menu from './Menu';
 import Profile from './Profile';
 
-export default function Sidebar() {
+interface SidebarProps {
+  activeMenu: 'overview' | 'transactions' | 'messages' | 'card' | 'rewards' | 'settings'
+}
+export default function Sidebar(props: SidebarProps) {
+  const { activeMenu } = props;
   return (
     <section className="sidebar">
       <div className="content pt-50 pb-30 ps-30">
         <Profile />
         <div className="menus">
-          <Menu title="Overview" icon="overview" active />
-          <Menu title="Transactions" icon="transaction" />
-          <Menu title="Messages" icon="messages" />
-          <Menu title="Card" icon="card" />
-          <Menu title="Rewards" icon="rewards" />
-          <Menu title="Settings" icon="settings" />
-          <Menu title="Log Out" icon="logout" />
+          <Menu title="Overview" icon="overview" active={activeMenu === 'overview'} href="/member" />
+          <Menu title="Transactions" icon="transaction" active={activeMenu === 'transactions'} href="/member/transactions" />
+          <Menu title="Messages" icon="messages" href="/member" />
+          <Menu title="Card" icon="card" href="/member" />
+          <Menu title="Rewards" icon="rewards" href="/member" />
+          <Menu title="Settings" icon="settings" active={activeMenu === 'settings'} href="/member/edit-profile" />
+          <Menu title="Log Out" icon="logout" href="/sign-in" />
         </div>
         <Footer />
       </div>
