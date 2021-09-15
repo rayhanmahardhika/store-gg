@@ -1,4 +1,4 @@
-interface TextFieldProps {
+export interface TextFieldProps {
     label: string;
 }
 export default function TextField(props: TextFieldProps) {
