@@ -2,9 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export interface GameItemProps {
-    title: string;
-    category: string;
-    thumbnail: '/img/Thumbnail-1.png' | '/img/Thumbnail-2.png' | '/img/Thumbnail-3.png' | '/img/Thumbnail-4.png' | '/img/Thumbnail-5.png';
+  title: string;
+  category: string;
+  thumbnail: string;
 }
 export default function GameItem(props: GameItemProps) {
   const { title, category, thumbnail } = props;
@@ -13,7 +13,13 @@ export default function GameItem(props: GameItemProps) {
       <Link href="/detail">
         <a>
           <div className="blur-sharp">
-            <Image className="thumbnail" src={thumbnail} width={205} height={270} alt="thumbnail game" />
+            <Image
+              className="thumbnail"
+              src={thumbnail}
+              width={205}
+              height={270}
+              alt="thumbnail game"
+            />
           </div>
           <div className="cover position-absolute bottom-0 m-32">
             <div className="d-flex flex-column h-100 justify-content-between text-decoration-none">
@@ -28,7 +34,6 @@ export default function GameItem(props: GameItemProps) {
           </div>
         </a>
       </Link>
-
     </div>
   );
 }
