@@ -35,6 +35,7 @@ export default function FeaturedGame() {
               title={game.name}
               category={game.category.name}
               thumbnail={`${API_IMG}/${game.thumbnail}`}
+              id={game._id}
             />
           ))}
         </div>
