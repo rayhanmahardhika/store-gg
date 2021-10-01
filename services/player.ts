@@ -1,4 +1,4 @@
-import axios from 'axios';
+import callAPI from '../config/api';
 
 // definisi route
 const ROOT_API = process.env.NEXT_PUBLIC_API;
@@ -6,29 +6,30 @@ const API_VER = 'api/v1';
 
 // service untuk get API Featured game
 export async function getFeaturedGames() {
-  const URL = 'players/landingpage';
-  // proses pemanggilan menggunakan AXIOS
-  const res = await axios.get(`${ROOT_API}/${API_VER}/${URL}`);
-  const axiosRes = res.data;
+  const url = `${ROOT_API}/${API_VER}/players/landingpage`;
+
   // pengembalian nilai
-  return axiosRes.data;
+  return callAPI({
+    url,
+    method: 'GET',
+  });
 }
 
 // service untuk get API Detail Voucher Game
 export async function getDetailVoucher(id: string) {
-  const URL = `players/${id}/detail`;
-  // proses pemanggilan menggunakan AXIOS
-  const res = await axios.get(`${ROOT_API}/${API_VER}/${URL}`);
-  const axiosRes = res.data;
+  const url = `${ROOT_API}/${API_VER}/players/${id}/detail`;
   // pengembalian nilai
-  return axiosRes.data;
+  return callAPI({
+    url,
+    method: 'GET',
+  });
 }
 
 export async function getGameCategory() {
-  const URL = 'players/category';
-  // proses pemanggilan menggunakan AXIOS
-  const res = await axios.get(`${ROOT_API}/${API_VER}/${URL}`);
-  const axiosRes = res.data;
+  const url = `${ROOT_API}/${API_VER}/players/category`;
   // pengembalian nilai
-  return axiosRes.data;
+  return callAPI({
+    url,
+    method: 'GET',
+  });
 }

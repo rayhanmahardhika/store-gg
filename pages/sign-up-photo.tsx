@@ -18,7 +18,7 @@ export default function SignUpPhoto() {
   const router = useRouter();
 
   const getGameCategoryAPI = useCallback(async () => {
-    const data = await getGameCategory();
+    const { data } = await getGameCategory();
     setCategories(data);
     setFavorite(data[0]._id);
   }, [getGameCategory]);
@@ -29,13 +29,13 @@ export default function SignUpPhoto() {
 
   useEffect(() => {
     const getLocalData = localStorage.getItem('user-form');
-    setLocalData(JSON.parse(getLocalData));
+    setLocalData(JSON.parse(getLocalData!));
   }, []);
 
   const onSubmit = async () => {
     // ambil data dari local storage
     const getLocalData = await localStorage.getItem('user-form');
-    const form = JSON.parse(getLocalData);
+    const form = JSON.parse(getLocalData!);
     // post data menggunakan bentuk FormData
     const data = new FormData();
 
@@ -50,7 +50,7 @@ export default function SignUpPhoto() {
     data.append('status', 'Y');
 
     const result = await setSignUp(data);
-    if (result?.error === 1) {
+    if (result.error) {
       toast.error(result.message);
     } else {
       toast.success('Register Berhasil! 😁');

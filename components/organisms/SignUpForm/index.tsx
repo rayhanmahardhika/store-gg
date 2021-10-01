@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import cx from 'classnames';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function SignUpForm() {
   // penggunaan state untuk pengisian request form ke API
@@ -74,15 +75,15 @@ export default function SignUpForm() {
           Continue
 
         </button>
-        <a
-          className="btn btn-sign-in fw-medium text-lg color-palette-1 rounded-pill"
-          href="sign-in"
-          role="button"
-        >
-          Sign
-          In
+        <Link href="/sign-in">
+          <a
+            className="btn btn-sign-in fw-medium text-lg color-palette-1 rounded-pill"
+          >
+            Sign
+            in
 
-        </a>
+          </a>
+        </Link>
       </div>
     </>
   );

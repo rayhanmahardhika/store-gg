@@ -1,4 +1,5 @@
-import axios from 'axios';
+import callAPI from '../config/api';
+import { LoginTypes } from './data-types';
 
 // definisi route
 const ROOT_API = process.env.NEXT_PUBLIC_API;
@@ -6,18 +7,23 @@ const API_VER = 'api/v1';
 
 // service untuk post data sign-up ke API
 export async function setSignUp(data: FormData) {
-  const URL = 'auth/signup';
-  // proses pemanggilan menggunakan AXIOS
-  // karena ada callback berupa error maka kita harus catch promise error nya
-  const res = await axios.post(`${ROOT_API}/${API_VER}/${URL}`, data).catch((err) => err.response);
-  const axiosRes = res.data;
-  if (axiosRes?.error === 1) {
-    return axiosRes;
-  }
+  const url = `${ROOT_API}/${API_VER}/auth/signup`;
+
   // pengembalian nilai
-  return axiosRes.data;
+  return callAPI({
+    url,
+    method: 'POST',
+    data,
+  });
 }
 
-export async function setLogin() {
-  return null;
+export async function setLogin(data: LoginTypes) {
+  const url = `${ROOT_API}/${API_VER}/auth/signin`;
+
+  // pengembalian nilai
+  return callAPI({
+    url,
+    method: 'POST',
+    data,
+  });
 }
