@@ -15,8 +15,17 @@ export async function getFeaturedGames() {
 }
 
 // service untuk get API Detail Voucher Game
-export async function getDetailVoucher(id) {
+export async function getDetailVoucher(id: string) {
   const URL = `players/${id}/detail`;
+  // proses pemanggilan menggunakan AXIOS
+  const res = await axios.get(`${ROOT_API}/${API_VER}/${URL}`);
+  const axiosRes = res.data;
+  // pengembalian nilai
+  return axiosRes.data;
+}
+
+export async function getGameCategory() {
+  const URL = 'players/category';
   // proses pemanggilan menggunakan AXIOS
   const res = await axios.get(`${ROOT_API}/${API_VER}/${URL}`);
   const axiosRes = res.data;
