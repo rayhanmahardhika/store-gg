@@ -1,10 +1,34 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
+import jwtDecode from 'jwt-decode';
+import { useRouter } from 'next/router';
+import { JWTPayloadTypes, UserTypes } from '../../../services/data-types';
 
-interface AuthProps {
-    isLogin?: boolean;
-}
-export default function Auth(props: Partial<AuthProps>) {
-  const { isLogin } = props;
+export default function Auth() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState({
+    avatar: '',
+  });
+  const router = useRouter();
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (token) {
+      const jwtToken = atob(token);
+      const payload: JWTPayloadTypes = jwtDecode(jwtToken);
+      const userPayload: UserTypes = payload.player;
+      const IMG = process.env.NEXT_PUBLIC_API_FILE;
+      userPayload.avatar = `${IMG}/${userPayload.avatar}`;
+      setIsLogin(true);
+      setUser(userPayload);
+    }
+  }, []);
+
+  const onLogOut = () => {
+    Cookies.remove('token');
+    router.push('/');
+    setIsLogin(false);
+  };
   // logic status butten login user
   if (isLogin) {
     return (
@@ -20,7 +44,7 @@ export default function Auth(props: Partial<AuthProps>) {
             aria-expanded="false"
           >
             <img
-              src="/img/avatar-1.png"
+              src={user.avatar}
               className="rounded-circle"
               width="40"
               height="40"
@@ -34,7 +58,7 @@ export default function Auth(props: Partial<AuthProps>) {
             <li>
               <Link href="/member/edit-profile"><a className="dropdown-item text-lg color-palette-2">Account Settings</a></Link>
             </li>
-            <li><Link href="/sign-in"><a className="dropdown-item text-lg color-palette-2">Log Out</a></Link></li>
+            <li onClick={onLogOut}><a className="dropdown-item text-lg color-palette-2">Log Out</a></li>
           </ul>
         </div>
       </li>
