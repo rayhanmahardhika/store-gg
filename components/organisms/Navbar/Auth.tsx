@@ -17,8 +17,8 @@ export default function Auth() {
       const jwtToken = atob(token);
       const payload: JWTPayloadTypes = jwtDecode(jwtToken);
       const userPayload: UserTypes = payload.player;
-      const IMG = process.env.NEXT_PUBLIC_API_FILE;
-      userPayload.avatar = `${IMG}/${userPayload.avatar}`;
+      // const IMG = process.env.NEXT_PUBLIC_API_FILE;
+      userPayload.avatar = `https://drive.google.com/uc?id=${userPayload.avatar}&export=download`;
       setIsLogin(true);
       setUser(userPayload);
     }
