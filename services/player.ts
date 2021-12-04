@@ -1,4 +1,5 @@
 import callAPI from '../config/api';
+import { CheckoutTypes } from './data-types';
 
 // definisi route
 const ROOT_API = process.env.NEXT_PUBLIC_API;
@@ -31,5 +32,16 @@ export async function getGameCategory() {
   return callAPI({
     url,
     method: 'GET',
+  });
+}
+
+export async function setCheckout(data: CheckoutTypes) {
+  const url = `${ROOT_API}/${API_VER}/players/checkout`;
+  // pengembalian nilai
+  return callAPI({
+    url,
+    method: 'POST',
+    data,
+    token: true,
   });
 }

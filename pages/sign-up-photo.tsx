@@ -1,16 +1,16 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { setSignUp } from '../services/auth';
 import { getGameCategory } from '../services/player';
-import 'react-toastify/dist/ReactToastify.css';
+import { CategoryTypes } from '../services/data-types';
 
 export default function SignUpPhoto() {
   const [categories, setCategories] = useState([]);
   const [favorite, setFavorite] = useState('');
-  const [image, setImage] = useState('');
-  const [imgPrev, setImgPrev] = useState('/icon/upload.svg');
+  const [image, setImage] = useState<any>('');
+  const [imgPrev, setImgPrev] = useState<any>('/icon/upload.svg');
   const [localData, setLocalData] = useState({
     name: '',
     email: '',
@@ -76,7 +76,7 @@ export default function SignUpPhoto() {
                     name="avatar"
                     accept="image/png, image/jpeg"
                     onChange={(event) => {
-                      const img = event.target.files[0];
+                      const img = event.target.files![0];
                       setImgPrev(URL.createObjectURL(img));
                       return setImage(img);
                     }}
@@ -99,7 +99,7 @@ export default function SignUpPhoto() {
                   value={favorite}
                   onChange={(event) => setFavorite(event.target.value)}
                 >
-                  {categories.map((category) => (
+                  {categories.map((category: CategoryTypes) => (
                     <option
                       key={category._id}
                       value={category._id}
@@ -133,7 +133,6 @@ export default function SignUpPhoto() {
           </div>
         </form>
       </div>
-      <ToastContainer />
     </section>
   );
 }

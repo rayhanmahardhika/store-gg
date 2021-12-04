@@ -58,7 +58,7 @@ export default function Auth() {
             <li>
               <Link href="/member/edit-profile"><a className="dropdown-item text-lg color-palette-2">Account Settings</a></Link>
             </li>
-            <li onClick={onLogOut}><a className="dropdown-item text-lg color-palette-2">Log Out</a></li>
+            <li><a onClick={onLogOut} href="#" className="dropdown-item text-lg color-palette-2">Log Out</a></li>
           </ul>
         </div>
       </li>
